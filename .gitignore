@@ -1,0 +1,9 @@
+# IDE files
+.nova/
+.vscode/
+
+# Compiled files
+*.pdx
+
+# Dev-only files
+TODO.md
