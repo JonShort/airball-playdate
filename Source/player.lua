@@ -19,7 +19,6 @@ function CreatePlayer()
 	player.update = updatePlayer
 	player:setSize(player_width, player_height)
 	player:moveTo(40, 180)
-	player:setCollideRect(0, 0, player_width, 1)
 
 	-- Setup mutable state for the player
 	player.power = 0

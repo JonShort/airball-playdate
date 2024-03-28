@@ -5,6 +5,7 @@ import "CoreLibs/timer"
 
 import "ball"
 import "player"
+import "net"
 import "stateMachine"
 
 local gfx <const> = playdate.graphics
@@ -17,6 +18,7 @@ synth:setADSR(0, 0.1, 0, 0)
 -- sprites
 local player <const> = CreatePlayer()
 local ball <const> = CreateBall()
+local net <const> = CreateNet()
 
 -- values
 local power_increase <const> = 3
@@ -36,6 +38,7 @@ local function init()
 	-- setup sprites
 	player:add()
 	ball:add()
+	net:add()
 end
 
 local function update()
@@ -63,6 +66,10 @@ local function update()
 		ball:launch(power, { x = 40, y = 180 }, { x = endX, y = 220 })
 	end
 
+	if (ball:checkForScore()) then
+		player_score += 1
+	end
+
 	gfx.sprite.update()
 	playdate.timer.updateTimers()
 	gfx.drawText(string.format("pow %i", power), 20, 220)
@@ -76,6 +83,7 @@ local function cleanup()
 
 	gfx.sprite.removeSprite(player)
 	gfx.sprite.removeSprite(ball)
+	gfx.sprite.removeSprite(net)
 end
 
 GameMethods = {

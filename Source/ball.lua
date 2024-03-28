@@ -18,19 +18,19 @@ local function updateBall(self)
 	end
 
 	local angle = self.arcStartAngle + (self.arcEndAngle - self.arcStartAngle) * self.ballSpeed
-	local x = self.arcCenterX + self.arcRadius * math.cos(angle)
-	local y = self.arcCenterY + self.arcRadius * math.sin(angle)
+	local goalX = self.arcCenterX + self.arcRadius * math.cos(angle)
+	local goalY = self.arcCenterY + self.arcRadius * math.sin(angle)
 
-	self:moveTo(x, y)
+	local actualX, actualY, collisions, numberOfCollisions = self:moveWithCollisions(goalX, goalY)
+
+	if (numberOfCollisions > 0) then
+		self.hasScored = true
+	end
 
 	self.ballSpeed += self.ballSpeedIncrement
 	if (self.ballSpeed >= 1) then
 		self:reset()
 	end
-end
-
-local function collisonResponse()
-	return "bounce"
 end
 
 local function reset(self)
@@ -42,6 +42,7 @@ local function reset(self)
 	self.arcCenterX = 0
 	self.arcCenterY = 0
 	self.arcRadius = 0
+	self.hasScored = false
 end
 
 local function launch(self, power, startPoint, endPoint)
@@ -60,13 +61,23 @@ local function launch(self, power, startPoint, endPoint)
 	self.ballSpeed = self.ballSpeedIncrement
 end
 
+local function checkForScore(self)
+	local hasScored = self.hasScored
+
+	if (hasScored) then
+		self:reset()
+	end
+
+	return hasScored
+end
+
 function CreateBall()
 	local ball = gfx.sprite.new()
 	ball.draw = drawBall
 	ball.update = updateBall
-	ball.collisonResponse = collisonResponse
 	ball.reset = reset
 	ball.launch = launch
+	ball.checkForScore = checkForScore
 	ball:setSize(10, 10)
 	ball:setCollideRect(1, 1, 8, 8)
 	ball:reset()
