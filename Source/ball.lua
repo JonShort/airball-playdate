@@ -4,6 +4,8 @@ import "CoreLibs/math"
 local gfx <const> = playdate.graphics
 
 local ballRadius <const> = 5
+local MIN_BALL_SPEED <const> = 0.04
+local MAX_BALL_SPEED <const> = 0.05
 
 local function drawBall()
 	gfx.setColor(gfx.kColorBlack)
@@ -55,7 +57,7 @@ local function launch(self, power, startPoint, endPoint)
 	self.arcStartAngle = math.atan(startPoint.y - self.arcCenterY, startPoint.x - self.arcCenterX)
 	self.arcEndAngle = math.atan(endPoint.y - self.arcCenterY, endPoint.x - self.arcCenterX)
 
-	self.ballSpeedIncrement = math.min(0.05, math.max(0.02, power / 1000));
+	self.ballSpeedIncrement = math.min(MAX_BALL_SPEED, math.max(MIN_BALL_SPEED, power / 1000));
 
 	-- Set the starting speed
 	self.ballSpeed = self.ballSpeedIncrement
