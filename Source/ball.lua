@@ -23,6 +23,12 @@ local function updateBall(self)
 	local goalX = self.arcCenterX + self.arcRadius * math.cos(angle)
 	local goalY = self.arcCenterY + self.arcRadius * math.sin(angle)
 
+	-- Prevents the ball arcing below the 90deg which looks unnatural
+	if (goalY >= self.arcCenterY) then
+		local currentX = self:getPosition()
+		goalX = currentX
+	end
+
 	local actualX, actualY, collisions, numberOfCollisions = self:moveWithCollisions(goalX, goalY)
 
 	if (numberOfCollisions > 0) then
