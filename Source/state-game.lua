@@ -7,6 +7,7 @@ import "ball"
 import "player"
 import "net"
 import "stateMachine"
+import "powerbar"
 
 local gfx <const> = playdate.graphics
 local snd <const> = playdate.sound
@@ -19,6 +20,7 @@ synth:setADSR(0, 0.1, 0, 0)
 local player <const> = CreatePlayer()
 local ball <const> = CreateBall()
 local net <const> = CreateNet()
+local powerbar <const> = CreatePowerbar()
 
 -- values
 local power_increase <const> = 3
@@ -39,6 +41,7 @@ local function init()
 	player:add()
 	ball:add()
 	net:add()
+	powerbar:add()
 end
 
 local function update()
@@ -61,9 +64,11 @@ local function update()
 		local amount = power_direction == "increase" and power_increase or -power_increase
 
 		power += amount
+		powerbar:setPower(power)
 	elseif (playdate.buttonJustReleased(playdate.kButtonA)) then
 		local endX = 340 * (power / 100) + 60
 		ball:launch(power, { x = 50, y = 150 }, { x = endX, y = 240 })
+		powerbar:remove()
 	end
 
 	if (ball:checkForScore()) then
@@ -72,7 +77,6 @@ local function update()
 
 	gfx.sprite.update()
 	playdate.timer.updateTimers()
-	gfx.drawText(string.format("pow %i", power), 20, 220)
 	gfx.drawText(string.format("score %i", player_score), 175, 5)
 end
 
@@ -84,6 +88,7 @@ local function cleanup()
 	gfx.sprite.removeSprite(player)
 	gfx.sprite.removeSprite(ball)
 	gfx.sprite.removeSprite(net)
+	gfx.sprite.removeSprite(powerbar)
 end
 
 GameMethods = {
