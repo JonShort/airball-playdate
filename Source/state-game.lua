@@ -63,7 +63,7 @@ local function update()
 		power += amount
 	elseif (playdate.buttonJustReleased(playdate.kButtonA)) then
 		local endX = 340 * (power / 100) + 60
-		ball:launch(power, { x = 40, y = 180 }, { x = endX, y = 220 })
+		ball:launch(power, { x = 50, y = 150 }, { x = endX, y = 240 })
 	end
 
 	if (ball:checkForScore()) then

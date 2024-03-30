@@ -14,10 +14,12 @@ local function updatePlayer()
 end
 
 function CreatePlayer()
-	local player = gfx.sprite.new()
+	local playerImage = gfx.image.new("Images/player")
+	assert(playerImage)
+
+	local player = gfx.sprite.new(playerImage)
 	player.draw = drawPlayer
 	player.update = updatePlayer
-	player:setSize(player_width, player_height)
 	player:moveTo(40, 180)
 
 	-- Setup mutable state for the player
