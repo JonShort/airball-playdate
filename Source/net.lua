@@ -32,10 +32,12 @@ local function updateNet(self)
 end
 
 function CreateNet()
-  local net = gfx.sprite.new()
+  local netImage = gfx.image.new("Images/net")
+  assert(netImage)
+
+  local net = gfx.sprite.new(netImage)
   net.draw = drawNet
   net.update = updateNet
-  net:setSize(width, height)
   net:moveTo(startX, startY)
   net:setCollideRect(0, 0, width, 5)
 
