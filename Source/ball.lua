@@ -10,7 +10,7 @@ local MAX_BALL_SPEED <const> = 0.05
 local function drawBall()
 	gfx.setColor(gfx.kColorBlack)
 	gfx.setLineWidth(0)
-	gfx.drawCircleAtPoint(ballRadius, ballRadius, ballRadius)
+	gfx.fillCircleAtPoint(ballRadius, ballRadius, ballRadius)
 end
 
 local function updateBall(self)
