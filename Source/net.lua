@@ -20,7 +20,7 @@ end
 local function updateNet(self)
   if (self.direction == "left" and self.x <= minX) then
     self.direction = "right"
-  elseif (self.x >= maxX) then
+  elseif (self.x >= maxX + 20) then
     self.direction = "left"
   end
 
