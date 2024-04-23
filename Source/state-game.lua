@@ -8,6 +8,7 @@ import "player"
 import "net"
 import "stateMachine"
 import "powerbar"
+import "timer"
 
 local gfx <const> = playdate.graphics
 local snd <const> = playdate.sound
@@ -32,10 +33,15 @@ local player_score = 0
 local power = 0
 local power_direction = "increase"
 
+local function gameOver()
+	SendGamestateAction("FINISH_GAME")
+end
+
 local function init()
 	player_score = 0
 	power = 0
 	power_direction = "increase"
+	CreateTimer(gameOver)
 
 	-- setup sprites
 	player:add()
@@ -81,7 +87,8 @@ local function update()
 end
 
 local function cleanup()
-	player_score = 0
+	-- TODO - add back in once results score is fixed
+	-- player_score = 0
 	power = 0
 	power_direction = "increase"
 
