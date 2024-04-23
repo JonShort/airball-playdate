@@ -23,7 +23,7 @@ local net <const> = CreateNet()
 local powerbar <const> = CreatePowerbar()
 
 -- values
-local power_increase <const> = 3
+local power_increase <const> = 6
 
 -- scores (mutable)
 local player_score = 0

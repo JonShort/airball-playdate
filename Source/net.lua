@@ -6,10 +6,10 @@ local speed <const> = 4
 
 -- Initial positioning
 local startX <const> = 400 - width
-local startY <const> = 180
+local startY <const> = 140
 
 local maxX <const> = 400 - width
-local minX <const> = 40 + width
+local minX <const> = 100 + width
 
 local function drawNet()
   gfx.setLineWidth(1)
