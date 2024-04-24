@@ -41,18 +41,18 @@ local stateMap = {
 	},
 }
 
-local function newState(new_state)
+local function newState(new_state, payload)
 	-- cleanup
 	state_methods.cleanup()
 
 	-- setting up the new state
 	current_state = new_state
 	state_methods = methodMap[new_state]
-	state_methods.init()
+	state_methods.init(payload)
 end
 
-function SendGamestateAction(action)
-	newState(stateMap[current_state][action])
+function SendGamestateAction(action, payload)
+	newState(stateMap[current_state][action], payload)
 	gfx.clear()
 end
 

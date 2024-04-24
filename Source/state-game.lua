@@ -34,7 +34,7 @@ local power = 0
 local power_direction = "increase"
 
 local function gameOver()
-	SendGamestateAction("FINISH_GAME")
+	SendGamestateAction("FINISH_GAME", { score = player_score })
 end
 
 local function init()
