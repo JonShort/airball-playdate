@@ -4,7 +4,7 @@ import "CoreLibs/math"
 
 local gfx <const> = playdate.graphics
 
-local DEFAULT_TIME_IN_MS <const> = 30000
+local DEFAULT_TIME_IN_MS <const> = 20000
 local POSITION_X <const> = 395
 local POSITION_Y <const> = 5
 
