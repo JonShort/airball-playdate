@@ -8,7 +8,9 @@ local function init()
 end
 
 local function update()
-	gfx.drawTextAligned(string.format("Press A to play"), 200, 120, kTextAlignment.center)
+	gfx.drawTextAligned("AIRBALL!", 200, 90, kTextAlignment.center)
+
+	gfx.drawTextAligned("PRESS A TO PLAY", 200, 130, kTextAlignment.center)
 
 	if (playdate.buttonJustReleased(playdate.kButtonA)) then
 		SendGamestateAction("START_GAME")

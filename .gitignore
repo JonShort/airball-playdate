@@ -7,3 +7,6 @@
 
 # Dev-only files
 TODO.md
+
+# MacOS files
+.DS_Store

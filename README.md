@@ -6,7 +6,7 @@ Hit nothing but net for some serious points
 
 ## How to play
 
-TODO
+Compete against a perfectly-matched opponent (yourself) to get the highest score!
 
 ## Controls
 
